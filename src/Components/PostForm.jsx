@@ -1,42 +1,37 @@
 import React, { useState } from "react";
+import { submitPost } from "../api/auth";
 
 const cohort = '2211-ftb-et-web-ft';
 
-const PostForm = () => {
+const PostForm = (token) => {
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
     const [price, setPrice] = useState('');
     const [location, setLocation] = useState('');
     const [deliver, setDeliver] = useState(false);
+    const [success, setSuccess] = useState(false);
     
     const handleSubmit = (event) => {
       event.preventDefault(); //Stop it from disappearing immediately
-      submitPost();
-      console.log(title, desc, price); //Show me what was typed
+      setSuccess(submitPost(
+        title,
+        desc,
+        price,
+        location,
+        deliver,
+        token));
+      console.log(
+        "title: " + title, 
+        "description: " + desc, 
+        "price: " + price, 
+        "location: " + location, 
+        "delivery: " + deliver); //Show me what was typed
       setTitle(''); //clear the username after it's submitted
       setDesc(''); //clear password after submission (Note: if no value assigned below then password stays)
       setPrice('');
       setLocation('');
       setDeliver(false);
     };
-
-    const submitPost = () => {
-        fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`,
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                title,
-                desc,
-                price,
-                location,
-                deliver,
-            }),
-        })
-
-    }
 
     return (
       <div id='submit-form-container'>

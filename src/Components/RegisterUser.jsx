@@ -1,44 +1,69 @@
 import React from "react";
 import { useState } from "react";
 
+import { registerUser } from "../api/auth";
 
 const Register = ({setToken}) => {
     const [username, setUsername] =
     useState("");
     const [password, setPassword] =
     useState("");
+    const [passwordAuth, setPasswordAuth] =
+    useState("");
+    const [passwordError, setPasswordError] =
+    useState("");
     return (
-        <div>
+        <div className="register-bar">
             <form
                onSubmit={async (e) => {
                 try {
-                    e.preventDefault();
-                    console.log(password, username);
-                    const token = await registerUser(username, password);
-                    setToken(token);
-                    localStorage.setItem("token", token);
+                    if (password === passwordAuth) {
+                        e.preventDefault();
+                        console.log(password, username);
+                        const token = await registerUser(username, password);
+                        setToken(token);
+                        console.log(token);
+                        localStorage.setItem("token", token);
+                        setUsername("");
+                        setPassword("");
+                        setPasswordAuth("");
+                        setPasswordError("");
+                    } else {
+                        e.preventDefault();
+                        setPasswordError("Error: Passwords do not match.")
+                    }
                 }   catch(error)   {
                     console.error()
                 }
                }}
             >
-                <label htmlFor="username">Username :</label>
+                <label htmlFor="username">New Username: </label>
                 <input 
                   value={username}
                   type="text"
-                  placeholder="username"
+                  placeholder="Username"
                   onChange={(e) => setUsername(e.target.value)}
-                  ></input>
+                ></input>
 
-                <label htmlFor="password">Password :</label>
+                <label htmlFor="password">New Password: </label>
                 <input 
                   value={password}
                   type="password"
-                  placeholder="password"
+                  placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
-                  ></input>
-                <button type="submit">submit</button>
-                </form>
+                ></input>
+
+                <label htmlFor="password">Confirm New Password: </label>
+                <input 
+                  value={passwordAuth}
+                  type="password"
+                  placeholder="Confirm Password"
+                  onChange={(e) => setPasswordAuth(e.target.value)}
+                ></input>
+
+                <button type="submit">Submit</button>
+                <div className="passwordError">{passwordError}</div>
+            </form>
         </div>
     );
 };
