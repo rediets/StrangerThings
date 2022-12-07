@@ -49,8 +49,9 @@ export const login = async (username, password) => {
     }
 };
 
-export const submitPost = async (title, desc, price, location, deliver, token) => {
+export const submitPost = async (title, desc, price, location, deliver, {token}) => {
     try {
+        console.log(token);
         const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`, 
         {
             method: 'POST',
