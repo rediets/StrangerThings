@@ -78,3 +78,18 @@ export const submitPost = async (title, desc, price, location, deliver, {token, 
         console.error(error);
     }
 };
+
+export const getUserId = async ({token}) => {
+    try {
+        const myId = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        });
+        const myId2 = await myId.json();
+        console.log(myId2);
+    } catch (error) {
+        console.error(error);
+    }
+}
