@@ -8,11 +8,19 @@ const LogMeIn = ({setToken}) => {
     useState("");
     const [password, setPassword] =
     useState("");
+<<<<<<< HEAD
 
     if (localStorage.token) {
         setToken(localStorage.token);
     }
 
+=======
+    if (localStorage.token) {
+        setToken(localStorage.token);
+    }
+    // const [passwordError, setPasswordError] =
+    // useState("");
+>>>>>>> b0237aca943b33486e4fa63ca24a47c455bdeb63
     return (
         <div className="login-bar">
             <form

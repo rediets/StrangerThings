@@ -3,6 +3,7 @@ import { submitPost } from "../api/auth";
 
 const cohort = '2211-ftb-et-web-ft';
 
+
 const PostForm = (token, posts, setPosts) => {
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
@@ -12,15 +13,13 @@ const PostForm = (token, posts, setPosts) => {
     
     const handleSubmit = (event) => {
       event.preventDefault(); //Stop it from disappearing immediately
-      submitPost(
+      setSuccess(submitPost(
         title,
         desc,
         price,
         location,
         deliver,
-        token,
-        posts,
-        setPosts);
+        token));
       console.log(
         "title: " + title, 
         "description: " + desc, 
@@ -45,9 +44,12 @@ const PostForm = (token, posts, setPosts) => {
           <input className="input" type='text' name='price' value={price} onChange={(event) => setPrice(event.target.value)}/>
           <label htmlFor='price'>Location (Optional):</label>
           <input className="input" type='text' name='location' value={location} onChange={(event) => setLocation(event.target.value)}/>
-          <button className="input" type='submit'>Submit</button>
+          <button className="input"  type='submit'>Submit</button>
         </form>
       </div>
     )
   }
+
+
+
   export default PostForm

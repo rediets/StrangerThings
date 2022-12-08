@@ -70,25 +70,11 @@ export const submitPost = async (title, desc, price, location, deliver, {token, 
                 }
             }),
         });
-        console.log(response.json());
         const reply = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`)
         const rep = await reply.json();
         setPosts(rep.data.posts);
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-export const getUserId = async ({token}) => {
-    try {
-        const myId = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-        });
-        const myId2 = await myId.json();
-        console.log(myId2);
+        const { success } = await response.json();
+        return success;
     } catch (error) {
         console.error(error);
     }
