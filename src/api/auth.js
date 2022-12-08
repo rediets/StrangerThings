@@ -49,7 +49,7 @@ export const login = async (username, password) => {
     }
 };
 
-export const submitPost = async (title, desc, price, location, deliver, {token}) => {
+export const submitPost = async (title, desc, price, location, deliver, {token, posts, setPosts}) => {
     try {
         console.log(token);
         const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`, 
@@ -69,6 +69,9 @@ export const submitPost = async (title, desc, price, location, deliver, {token})
                 }
             }),
         });
+        const reply = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`)
+        const rep = await reply.json();
+        setPosts(rep.data.posts);
         const { success } = await response.json();
         return success;
     } catch (error) {

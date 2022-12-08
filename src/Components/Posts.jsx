@@ -2,15 +2,20 @@ import React, { useState, useEffect } from "react";
 
 const cohort = '2211-ftb-et-web-ft';
 
-const Posts = () => {
-    const [posts, setPosts] = useState([]);
+const Posts = ({posts, setPosts, token}) => {
+   
 
     useEffect(() => {
-        fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`)
+        fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`,{
+            headers: {
+                'Authorization':`Bearer ${token}`
+            }
+        })
             .then(result => result.json())
             .then(
                 (result) => {
                     setPosts(result.data.posts);
+                    console.log(result.data.posts);
                 },
             (error) => {
                 console.log(error);

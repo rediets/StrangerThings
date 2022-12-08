@@ -8,6 +8,9 @@ const LogMeIn = ({setToken}) => {
     useState("");
     const [password, setPassword] =
     useState("");
+    if (localStorage.token) {
+        setToken(localStorage.token);
+    }
     // const [passwordError, setPasswordError] =
     // useState("");
     return (

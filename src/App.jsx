@@ -24,8 +24,8 @@ function App() {
         { token &&
           <LogMeOut token={ token } setToken={ setToken }/>
         }
-        <Posts />
-        <PostForm token={ token } />
+        <Posts token={ token } posts={posts} setPosts={setPosts}/>
+        <PostForm token={ token } posts={posts} setPosts={setPosts}/>
       </div>
     </div>
   )
