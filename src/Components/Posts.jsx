@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const cohort = '2211-ftb-et-web-ft';
 
-const Posts = () => {
-    const [posts, setPosts] = useState([]);
+const Posts = ({posts, setPosts}) => {
 
     useEffect(() => {
         fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`)
@@ -11,6 +10,7 @@ const Posts = () => {
             .then(
                 (result) => {
                     setPosts(result.data.posts);
+                    console.log(result.data.posts);
                 },
             (error) => {
                 console.log(error);
@@ -21,7 +21,7 @@ const Posts = () => {
     return (
         <div className="posts-container">
             {posts.map(posts => (
-                <div key={posts._id} className="single-player-card">
+            <div key={posts._id} className="single-item-card">
                 <div className="header-info">
                   <p className="post-title">{posts.title}</p>
                   <p className="post-price">{posts.price}</p>
@@ -29,7 +29,7 @@ const Posts = () => {
                 <div>
                     <p className="post-desc">{posts.description}</p>
                 </div>
-              </div>
+            </div>
             ))}
         </div>
     )

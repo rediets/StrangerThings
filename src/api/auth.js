@@ -28,7 +28,8 @@ export const registerUser = async (username, password) => {
 
 export const login = async (username, password) => {
     try {
-        const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/users/login`, {
+        const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/users/login`, 
+        {
             method: "POST",
             headers: {
               'Content-Type': 'application/json'
@@ -49,7 +50,7 @@ export const login = async (username, password) => {
     }
 };
 
-export const submitPost = async (title, desc, price, location, deliver, {token}) => {
+export const submitPost = async (title, desc, price, location, deliver, {token, posts, setPosts}) => {
     try {
         console.log(token);
         const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`, 
@@ -69,8 +70,10 @@ export const submitPost = async (title, desc, price, location, deliver, {token})
                 }
             }),
         });
-        const { success } = await response.json();
-        return success;
+        console.log(response.json());
+        const reply = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`)
+        const rep = await reply.json();
+        setPosts(rep.data.posts);
     } catch (error) {
         console.error(error);
     }
