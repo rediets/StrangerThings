@@ -116,3 +116,28 @@ export const getUserId = async (token) => {
         console.error(error);
     }
 }
+
+export const sendMessage = async (token, postId, message) => {
+    try {
+        const var5 = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts/${postId}/messages`, {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              message: {
+                content: `${message}`
+              }
+            })
+          })
+        const var6 = await var5.json();
+        console.log(var6.success);
+        console.log(var6.data.message._id);
+        console.log(var6.data.message.content);
+        console.log(var6.data.message.post);
+        console.log(var6.data.message.fromUser);
+    } catch (error) {
+        console.error(error);
+    }
+}
