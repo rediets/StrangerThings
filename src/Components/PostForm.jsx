@@ -10,24 +10,16 @@ const PostForm = (token, posts, setPosts) => {
     const [price, setPrice] = useState('');
     const [location, setLocation] = useState('');
     const [deliver, setDeliver] = useState(false);
-    const [success, setSuccess] = useState(false);
-    
     
     const handleSubmit = (event) => {
       event.preventDefault(); //Stop it from disappearing immediately
-      if ((!title || !desc) || (!desc || !price)){
-        return;
-      };
       setSuccess(submitPost(
         title,
         desc,
         price,
         location,
         deliver,
-        token,
-        posts,
-        setPosts
-        ));
+        token));
       console.log(
         "title: " + title, 
         "description: " + desc, 

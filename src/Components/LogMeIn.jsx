@@ -1,18 +1,20 @@
 import React from "react";
 import { useState } from "react";
 
-import { login } from "../api/auth";
+import { getUserId, login } from "../api/auth";
 
-const LogMeIn = ({setToken}) => {
+const LogMeIn = ({setToken, setUserId}) => {
     const [username, setUsername] =
     useState("");
     const [password, setPassword] =
     useState("");
+    const [passwordError, setPasswordError] =
+    useState("");
+
     if (localStorage.token) {
-        setToken(localStorage.token);
+        localStorage.removeItem('token');
     }
-    // const [passwordError, setPasswordError] =
-    // useState("");
+
     return (
         <div className="login-bar">
             <form
@@ -21,11 +23,16 @@ const LogMeIn = ({setToken}) => {
                     e.preventDefault();
                     console.log(password, username);
                     const token = await login(username, password);
+                    if (!token) {
+                        setPasswordError("Username/Password do not match. Please check your spelling and try again.");
+                    } else {
                     setToken(token);
-                    console.log(token);
+                    const userId = await getUserId(token);
+                    setUserId(userId);
                     localStorage.setItem("token", token);
                     setUsername("");
                     setPassword("");
+                    };
                 }   catch(error)   {
                     console.error()
                 }
@@ -48,7 +55,7 @@ const LogMeIn = ({setToken}) => {
                 ></input>
 
                 <button type="submit">Log In</button>
-                {/* <div className="passwordError">{passwordError}</div> */}
+                <div className="passwordError">{passwordError}</div>
             </form>
         </div>
     );

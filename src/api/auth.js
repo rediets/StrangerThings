@@ -28,7 +28,8 @@ export const registerUser = async (username, password) => {
 
 export const login = async (username, password) => {
     try {
-        const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/users/login`, {
+        const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/users/login`, 
+        {
             method: "POST",
             headers: {
               'Content-Type': 'application/json'
@@ -77,4 +78,41 @@ export const submitPost = async (title, desc, price, location, deliver, {token, 
     } catch (error) {
         console.error(error);
     }
-};
+}
+
+export const deletePost = async (token, postId, setPosts) => {
+    try {
+        const var3 = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts/${postId}`, {
+            method: "DELETE",
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }
+          });
+        const var4 = await var3.json();
+        const reply = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`)
+        const rep = await reply.json();
+        setPosts(rep.data.posts);
+        return var4.success;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getUserId = async (token) => {
+    try {
+        const var1 = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/users/me`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+          })
+        const var2 = await var1.json();
+        console.log(var2.data.posts);
+        console.log(var2.data.messages);
+        console.log(var2.data._id);
+        return var2.data._id;
+    } catch (error) {
+        console.error(error);
+    }
+}
