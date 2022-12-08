@@ -1,26 +1,24 @@
 import React from "react";
 import { useState } from "react";
 
-import { login } from "../api/auth";
+import { getUserId, login } from "../api/auth";
 
 const LogMeIn = ({setToken}) => {
     const [username, setUsername] =
     useState("");
     const [password, setPassword] =
     useState("");
-<<<<<<< HEAD
 
     if (localStorage.token) {
         setToken(localStorage.token);
     }
 
-=======
+
     if (localStorage.token) {
         setToken(localStorage.token);
     }
     // const [passwordError, setPasswordError] =
     // useState("");
->>>>>>> b0237aca943b33486e4fa63ca24a47c455bdeb63
     return (
         <div className="login-bar">
             <form
@@ -30,7 +28,7 @@ const LogMeIn = ({setToken}) => {
                     console.log(password, username);
                     const token = await login(username, password);
                     setToken(token);
-                    console.log(token);
+                    const userId = await getUserId(token);
                     localStorage.setItem("token", token);
                     setUsername("");
                     setPassword("");
