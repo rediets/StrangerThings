@@ -117,6 +117,21 @@ export const getUserId = async (token) => {
     }
 }
 
+// export const getUserData = async (token) => {
+//     try {
+//         const var1 = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/users/me`, {
+//             headers: {
+//               'Content-Type': 'application/json',
+//               'Authorization': `Bearer ${token}`
+//             },
+//           })
+//         const var2 = await var1.json();
+//         return var2.data;
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
+
 export const sendMessage = async (token, postId, message) => {
     try {
         const var5 = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts/${postId}/messages`, {
