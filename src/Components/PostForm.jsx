@@ -13,13 +13,13 @@ const PostForm = (token, posts, setPosts) => {
     
     const handleSubmit = (event) => {
       event.preventDefault(); //Stop it from disappearing immediately
-      setSuccess(submitPost(
+      submitPost(
         title,
         desc,
         price,
         location,
         deliver,
-        token));
+        token);
       console.log(
         "title: " + title, 
         "description: " + desc, 
