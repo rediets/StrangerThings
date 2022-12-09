@@ -3,7 +3,7 @@ import "./App.css";
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Home from "./Pages/HomePage";
-import PostForm from "./Components/PostForm";
+import Profile from "./Pages/Profile";
 import Register from "./Components/RegisterUser";
 import LogMeIn from "./Components/LogMeIn";
 import Navbar from "./Pages/NavBar";
@@ -35,6 +35,9 @@ function App() {
         }
         {!token &&
           <Route path='/login' element={ <LogMeIn setToken={ setToken } setUserId={ setUserId } /> } />
+        }
+        {token &&
+          <Route path='profile' element={<Profile token={ token } setToken={ setToken } />} />
         }
         <Route path='*' element={<Navigate replace to='/' />} />
         {/* <div>
