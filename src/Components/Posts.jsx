@@ -45,7 +45,7 @@ const Posts = ({posts, setPosts, token, userId}) => {
                                 <button type="submit">Delete Post</button>
                             </form>
                         }
-                        { (userId !== posts.author._id && postId !== posts._id) &&
+                        { ((token) && (userId !== posts.author._id && postId !== posts._id)) &&
                             <form onSubmit={ async (e) => {
                                 e.preventDefault();
                                 setPostId(posts._id);
@@ -67,7 +67,7 @@ const Posts = ({posts, setPosts, token, userId}) => {
                                     type="text"
                                     onChange={(e) => setMessage(e.target.value)}
                                 ></input>
-                                <button type="submit">Send Message</button>
+                                <button type="submit">Send</button>
                             </form>
                         }
                 </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { redirect } from "react-router-dom";
 
 import { getUserId, login } from "../api/auth";
 
@@ -12,8 +13,8 @@ const LogMeIn = ({setToken, setUserId}) => {
     useState("");
 
     if (localStorage.token) {
-        localStorage.removeItem('token');
-    }
+        return redirect("/");
+    };
 
     return (
         <div className="login-bar">
