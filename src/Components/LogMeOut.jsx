@@ -4,7 +4,7 @@ const LogMeOut = ({token, setToken}) => {
 
     return (
         <div className="logout-bar">
-            <button type="logout" onClick={(()=>{
+            <button className="logout-button" type="logout" onClick={(()=>{
                 try {
                     localStorage.removeItem('token');
                     setToken(null);

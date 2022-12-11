@@ -1,8 +1,6 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
 .logo {
@@ -32,11 +30,87 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
-
 .read-the-docs {
   color: #888;
-};
+}
 
+.seller{
+  font-size: 40px;
+  font-weight: bolder;
+}
+.single-item-card{
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  padding: 0;
+  margin: auto;
+  list-style: none;
+  flex-shrink: 1;
+  border: black 2px solid;
+  flex-basis: 100%;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+.post-title{
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+.post-price{
+  font-size: 20px;
+}
+.post-messages{
+  font-size: 30px;
+}
+input{
+  margin-right: 2rem;
+}
+
+ 
+.search {
+top: 0rem;
+margin: auto;
+height: 3rem;
+font-size: 20px;
+text-align: center;
+}
+
+#submit-form-container{
+  top: 0px;
+  width: 40px;
+  text-align: left;
+  font-weight: bold;
+  float: right;
+}
+
+
+input{
+  margin-bottom: 1rem;
+}
+button{
+  margin-bottom: 2rem;
+}
+div{
+  margin-right: 0px;
+}
+p{
+  font-size: 20px;
+  right: 0px;
+}
+a:hover{
+  transform: scale(1.1);
+  transition: ease;
+
+}
+a{
+  padding: 1rem;
+	transition-timing-function: ease-in-out;
+	transition: 500ms;  
+}
+nav{
+  display: flex;
+  font-size: 30px;
+}
+form{
+  margin-top: 2rem;
+};

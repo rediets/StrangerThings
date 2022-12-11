@@ -35,7 +35,7 @@ const PostForm = (token, posts, setPosts) => {
 
     return (
       <div id='submit-form-container'>
-        <form onSubmit={handleSubmit}>
+        <form className="submitForm" onSubmit={handleSubmit}>
           <label htmlFor='title'>Item Name:</label>
           <input className="input" type='text' name='title' value={title} onChange={(event) => setTitle(event.target.value)} />
           <label htmlFor='desc'>Description:</label>
