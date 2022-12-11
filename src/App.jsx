@@ -40,26 +40,7 @@ function App() {
           <Route path='profile' element={<Profile token={ token } setToken={ setToken } />} />
         }
         <Route path='*' element={<Navigate replace to='/' />} />
-        {/* <div>
-          { !token &&
-            <Register 
-              setToken={ setToken }
-            />
-          }
-          { !token &&
-            <LogMeIn 
-              setToken={ setToken } 
-              setUserId={ setUserId }
-            />
-          }
-          { token &&
-          <PostForm 
-            token={ token } 
-            posts={ posts } 
-            setPosts={ setPosts }
-          />
-          }
-        </div> */}
+        
       </Routes>
     </div>
   )

@@ -77,14 +77,15 @@ const Posts = ({posts, setPosts, token, userId}) => {
                     </div>
                 </div>
                 ))}
-            </div>
+           
             <input
+                className="search"
                 placeholder="Search for posts by Title"
                 value={searchTerm}
                 type="text"
                 onChange={(e) => setSearchTerm(e.target.value)}
-            ></input>
-        </>
+            ></input></div>
+         </>
     )
 }
 

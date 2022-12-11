@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const Navbar = ({token}) => {
   return (
+    <div className='header'>
     <nav>
       <NavLink to='/'>Home</NavLink>
       { !token &&
@@ -15,6 +16,7 @@ const Navbar = ({token}) => {
         <NavLink to='/profile'>Profile</NavLink>
       }
     </nav>
+    </div>
   );
 };
 
